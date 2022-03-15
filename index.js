@@ -11,18 +11,18 @@ const createDatetimeFromString = (datetimeString) => {
   return datetime;
 };
 
-// Encodes strings to base64
-const encodeBase64 = (data, encoding = 'base64') => {
-  // const buff = Buffer.from(data);
-  // return buff.toString(encoding);
-  return Buffer.from(data).toString(encoding);
-};
-
 // Decodes base64 strings to ASCII
 const decodeBase64 = (data, encoding = 'base64', radix = 'utf-8') => {
   // const buff = Buffer.from(data, encoding);
   // return buff.toString(radix);
   return Buffer.from(data, encoding).toString(radix);
+};
+
+// Encodes strings to base64
+const encodeBase64 = (data, encoding = 'base64') => {
+  // const buff = Buffer.from(data);
+  // return buff.toString(encoding);
+  return Buffer.from(data).toString(encoding);
 };
 
 // Current datetime in following format (string) YYYY-MM-DD HH:MM:SS
@@ -48,6 +48,10 @@ const getFormattedDatetimeString = (datetime = new Date()) => {
   const seconds = zeroPadInteger(datetime.getSeconds(), 2);
 
   return (`${year}-${month}-${date} ${hours}:${minutes}:${seconds}`);
+};
+
+const log = (...args) => {
+  console.info(`[${this.getFormattedDatetimeString()}] ${args.reduce((accumulator, value) => `${accumulator} ${value}`)}`);
 };
 
 // Performs a url encoding to a javascript object
