@@ -51,7 +51,7 @@ const getFormattedDatetimeString = (datetime = new Date()) => {
 };
 
 const log = (...args) => {
-  console.info(`[${this.getFormattedDatetimeString()}] ${args.reduce((accumulator, value) => `${accumulator} ${value}`)}`);
+  console.info(`[${getFormattedDatetimeString()}] ${args.reduce((accumulator, value) => `${accumulator} ${value}`)}`);
 };
 
 // Performs a url encoding to a javascript object
