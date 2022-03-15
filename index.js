@@ -26,7 +26,7 @@ module.exports.encodeBase64 = (data, encoding = 'base64') => {
 };
 
 // Current datetime in following format (string) YYYY-MM-DD HH:MM:SS
-const getCondensedDatetimeString = (_datetime = new Date()) => {
+module.exports.getCondensedDatetimeString = (_datetime = new Date()) => {
   const _year = _datetime.getFullYear();
   const _month = zeroPadInteger(_datetime.getMonth() + 1, 2);
   const _date = zeroPadInteger(_datetime.getDate(), 2);
