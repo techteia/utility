@@ -1,6 +1,6 @@
 'use strict';
 
-const createDatetimeFromString = (datetimeString) => {
+module.exports.createDatetimeFromString = (datetimeString) => {
   const millisecond = 1;
   const second = 1000 * millisecond;
   let datetime;
@@ -12,14 +12,14 @@ const createDatetimeFromString = (datetimeString) => {
 };
 
 // Decodes base64 strings to ASCII
-const decodeBase64 = (data, encoding = 'base64', radix = 'utf-8') => {
+module.exports.decodeBase64 = (data, encoding = 'base64', radix = 'utf-8') => {
   // const buff = Buffer.from(data, encoding);
   // return buff.toString(radix);
   return Buffer.from(data, encoding).toString(radix);
 };
 
 // Encodes strings to base64
-const encodeBase64 = (data, encoding = 'base64') => {
+module.exports.encodeBase64 = (data, encoding = 'base64') => {
   // const buff = Buffer.from(data);
   // return buff.toString(encoding);
   return Buffer.from(data).toString(encoding);
@@ -38,7 +38,7 @@ const getCondensedDatetimeString = (_datetime = new Date()) => {
 };
 
 // Current datetime in following format (string) YYYY-MM-DD HH:MM:SS
-const getFormattedDatetimeString = (datetime = new Date()) => {
+module.exports.getFormattedDatetimeString = (datetime = new Date()) => {
   const year = datetime.getFullYear();
   const month = zeroPadInteger(datetime.getMonth(), 2);
   const date = zeroPadInteger(datetime.getDate(), 2);
@@ -50,25 +50,15 @@ const getFormattedDatetimeString = (datetime = new Date()) => {
   return (`${year}-${month}-${date} ${hours}:${minutes}:${seconds}`);
 };
 
-const log = (...args) => {
+module.exports.log = (...args) => {
   console.info(`[${this.getFormattedDatetimeString()}] ${args.reduce((accumulator, value) => `${accumulator} ${value}`)}`);
 };
 
 // Performs a url encoding to a javascript object
-const urlEncode = (o) => Object.keys(o).map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(o[k])}`).join('&');
+module.exports.urlEncode = (o) => Object.keys(o).map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(o[k])}`).join('&');
 
 // Appends 0's to a number and returns as a string
-const zeroPadInteger = (integer, fieldWidth) => {
+module.exports.zeroPadInteger = (integer, fieldWidth) => {
   integer = integer + '';
   return integer.length >= fieldWidth ? integer : new Array(fieldWidth - integer.length + 1).join('0') + integer;
-};
-
-module.exports = {
-  createDatetimeFromString,
-  decodeBase64,
-  encodeBase64,
-  getCondensedDatetimeString,
-  getFormattedDatetimeString,
-  urlEncode,
-  zeroPadInteger,
 };
