@@ -50,8 +50,40 @@ const getFormattedDatetimeString = (datetime = new Date()) => {
   return (`${year}-${month}-${date} ${hours}:${minutes}:${seconds}`);
 };
 
+const inspect = (
+  object,
+  options = {
+    showHidden: false,
+    depth: null
+  }
+) => {
+  console.debug(
+    require('util').inspect(
+      object,
+      options
+    )
+  );
+};
+
 const log = (...args) => {
   console.info(`[${getFormattedDatetimeString()}] ${args.reduce((accumulator, value) => `${accumulator} ${value}`)}`);
+};
+
+const normalizePort = (val) => {
+  const port = parseInt(
+    val,
+    10
+  );
+
+  // named pipe
+  if (isNaN(port))
+    return val;
+
+  // port number
+  if (port >= 0)
+    return port;
+
+  return false;
 };
 
 // Performs a url encoding to a javascript object
@@ -67,9 +99,11 @@ module.exports = {
   createDatetimeFromString,
   decodeBase64,
   encodeBase64,
-  log,
   getCondensedDatetimeString,
   getFormattedDatetimeString,
+  inspect,
+  log,
+  normalizePort,
   urlEncode,
   zeroPadInteger,
 };
